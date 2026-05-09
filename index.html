@@ -92,58 +92,49 @@ select{
 
 <h2>FORM PENDAFTARAN MAHASISWA BARU</h2>
 
-<form>
+<form id="formPendaftaran">
 
 <table class="form-table">
 
 <tr>
-    <td>Jumlah Input Data</td>
-    <td>:</td>
-    <td><input type="number"></td>
-</tr>
-
-<tr>
     <td>Kode Pendaftaran</td>
     <td>:</td>
-    <td><input type="text"></td>
+    <td><input type="text" id="kode"></td>
 </tr>
 
 <tr>
     <td>Nama Pendaftar</td>
     <td>:</td>
-    <td><input type="text"></td>
+    <td><input type="text" id="nama"></td>
 </tr>
 
 <tr>
     <td>Jenis Kelamin</td>
     <td>:</td>
     <td>
-        <input type="radio" name="jk"> Laki-Laki
-        <input type="radio" name="jk"> Perempuan
+        <input type="radio" name="jk" value="Laki-Laki"> Laki-Laki
+        <input type="radio" name="jk" value="Perempuan"> Perempuan
     </td>
 </tr>
 
 <tr>
-    <td>TTL</td>
+    <td>Tempat Lahir</td>
     <td>:</td>
-    <td>
-        <input type="text" placeholder="Tempat Lahir">
-        <input type="date">
-    </td>
+    <td><input type="text" id="tempat"></td>
 </tr>
 
 <tr>
-    <td>Asal Sekolah</td>
+    <td>Tanggal Lahir</td>
     <td>:</td>
-    <td><input type="text"></td>
+    <td><input type="date" id="tgl"></td>
 </tr>
 
 <tr>
     <td>Pekerjaan Ortu</td>
     <td>:</td>
     <td>
-        <select>
-            <option>== PILIH PEKERJAAN ==</option>
+        <select id="ortu">
+            <option>Pilih</option>
             <option>PNS</option>
             <option>Wiraswasta</option>
             <option>Petani</option>
@@ -153,28 +144,28 @@ select{
 </tr>
 
 <tr>
-    <td>Nilai Tes Matematika</td>
+    <td>Nilai Matematika</td>
     <td>:</td>
-    <td><input type="number"></td>
+    <td><input type="number" id="mat"></td>
 </tr>
 
 <tr>
-    <td>Bhs. Inggris</td>
+    <td>Nilai Inggris</td>
     <td>:</td>
-    <td><input type="number"></td>
+    <td><input type="number" id="ing"></td>
 </tr>
 
 <tr>
-    <td>P. Umum</td>
+    <td>Nilai Umum</td>
     <td>:</td>
-    <td><input type="number"></td>
+    <td><input type="number" id="umum"></td>
 </tr>
 
 <tr>
     <td></td>
     <td></td>
     <td>
-        <button class="btn simpan">SIMPAN</button>
+        <button type="button" class="btn simpan" onclick="simpanData()">SIMPAN</button>
         <button type="reset" class="btn reset">RESET</button>
     </td>
 </tr>
@@ -185,27 +176,27 @@ select{
 
 <h3>TABEL DATA</h3>
 
-<table class="data-table" border="1">
+<table class="data-table">
 
+<thead>
 <tr>
-    <th>Kode Pendf</th>
-    <th>Nama Pendf</th>
-    <th>Tmp. Lahir</th>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Tmp Lahir</th>
     <th>JK</th>
     <th>Tgl Lahir</th>
     <th>Pek. Ortu</th>
-    <th>Tempat Tes</th>
-    <th>Bln Tes</th>
     <th>MAT</th>
-    <th>INGGRIS</th>
+    <th>ING</th>
     <th>UMUM</th>
-    <th>N. RATA</th>
-    <th>KETERANGAN</th>
+    <th>RATA</th>
+    <th>Keterangan</th>
 </tr>
+</thead>
 
-<tr>
-    <td colspan="13" height="100"></td>
-</tr>
+<tbody id="hasilData">
+
+</tbody>
 
 </table>
 
@@ -215,35 +206,76 @@ select{
 
 <h3>Kode pendaftaran :</h3>
 
-2 karakter awal untuk tempat tes dan gelombang:<br><br>
-
 A = Gedung A<br>
 B = Gedung B<br>
-V = Viktor<br><br>
-
-1 karakter akhir bulan tes<br><br>
-
-Contoh: A2-101-9<br><br>
-
-<b>Ket-tes : Gedung A</b>
+V = Viktor
 
 </div>
 
 <div class="box">
 
-<h3>RATA-RATA = MAT, B. INGGRIS, UMUM</h3>
+<h3>Keterangan Nilai</h3>
 
-Jika RATA-RATA MIN 70, maka keterangan <b>Lulus</b><br><br>
-
-Jika 60 - 70, keterangan <b>Cadangan</b><br><br>
-
-&lt; 60, keterangan <b>Tidak Lulus</b>
+≥ 70 = Lulus<br>
+60 - 69 = Cadangan<br>
+&lt; 60 = Tidak Lulus
 
 </div>
 
 </div>
 
 </div>
+
+<script>
+
+function simpanData(){
+
+    let kode = document.getElementById("kode").value;
+    let nama = document.getElementById("nama").value;
+    let tempat = document.getElementById("tempat").value;
+    let tgl = document.getElementById("tgl").value;
+    let ortu = document.getElementById("ortu").value;
+
+    let mat = parseFloat(document.getElementById("mat").value);
+    let ing = parseFloat(document.getElementById("ing").value);
+    let umum = parseFloat(document.getElementById("umum").value);
+
+    let jk = document.querySelector('input[name="jk"]:checked').value;
+
+    let rata = (mat + ing + umum) / 3;
+
+    let ket = "";
+
+    if(rata >= 70){
+        ket = "Lulus";
+    }else if(rata >= 60){
+        ket = "Cadangan";
+    }else{
+        ket = "Tidak Lulus";
+    }
+
+    let tabel = document.getElementById("hasilData");
+
+    tabel.innerHTML += `
+    <tr>
+        <td>${kode}</td>
+        <td>${nama}</td>
+        <td>${tempat}</td>
+        <td>${jk}</td>
+        <td>${tgl}</td>
+        <td>${ortu}</td>
+        <td>${mat}</td>
+        <td>${ing}</td>
+        <td>${umum}</td>
+        <td>${rata.toFixed(2)}</td>
+        <td>${ket}</td>
+    </tr>
+    `;
+
+    document.getElementById("formPendaftaran").reset();
+}
+
+</script>
 
 </body>
 </html>
