@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Mahasiswa</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#F1F5F9;
+    margin:20px;
+}
+
+.container{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    color:#0F172A;
+}
+
+.form-table td{
+    padding:6px;
+}
+
+input[type=text],
+input[type=date],
+input[type=number],
+select{
+    padding:6px;
+    border:1px solid #CBD5E1;
+    border-radius:5px;
+    width:220px;
+}
+
+.btn{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+
+.simpan{
+    background:#16A34A;
+}
+
+.reset{
+    background:#DC2626;
+}
+
+.data-table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+
+.data-table th{
+    background:#DBEAFE;
+    padding:8px;
+}
+
+.data-table td{
+    border:1px solid #CBD5E1;
+    padding:8px;
+    text-align:center;
+}
+
+.keterangan{
+    margin-top:20px;
+    display:flex;
+    gap:20px;
+}
+
+.box{
+    flex:1;
+    border:1px solid #CBD5E1;
+    padding:15px;
+    background:white;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>FORM PENDAFTARAN MAHASISWA BARU</h2>
+
+<form>
+
+<table class="form-table">
+
+<tr>
+    <td>Jumlah Input Data</td>
+    <td>:</td>
+    <td><input type="number"></td>
+</tr>
+
+<tr>
+    <td>Kode Pendaftaran</td>
+    <td>:</td>
+    <td><input type="text"></td>
+</tr>
+
+<tr>
+    <td>Nama Pendaftar</td>
+    <td>:</td>
+    <td><input type="text"></td>
+</tr>
+
+<tr>
+    <td>Jenis Kelamin</td>
+    <td>:</td>
+    <td>
+        <input type="radio" name="jk"> Laki-Laki
+        <input type="radio" name="jk"> Perempuan
+    </td>
+</tr>
+
+<tr>
+    <td>TTL</td>
+    <td>:</td>
+    <td>
+        <input type="text" placeholder="Tempat Lahir">
+        <input type="date">
+    </td>
+</tr>
+
+<tr>
+    <td>Asal Sekolah</td>
+    <td>:</td>
+    <td><input type="text"></td>
+</tr>
+
+<tr>
+    <td>Pekerjaan Ortu</td>
+    <td>:</td>
+    <td>
+        <select>
+            <option>== PILIH PEKERJAAN ==</option>
+            <option>PNS</option>
+            <option>Wiraswasta</option>
+            <option>Petani</option>
+            <option>Guru</option>
+        </select>
+    </td>
+</tr>
+
+<tr>
+    <td>Nilai Tes Matematika</td>
+    <td>:</td>
+    <td><input type="number"></td>
+</tr>
+
+<tr>
+    <td>Bhs. Inggris</td>
+    <td>:</td>
+    <td><input type="number"></td>
+</tr>
+
+<tr>
+    <td>P. Umum</td>
+    <td>:</td>
+    <td><input type="number"></td>
+</tr>
+
+<tr>
+    <td></td>
+    <td></td>
+    <td>
+        <button class="btn simpan">SIMPAN</button>
+        <button type="reset" class="btn reset">RESET</button>
+    </td>
+</tr>
+
+</table>
+
+</form>
+
+<h3>TABEL DATA</h3>
+
+<table class="data-table" border="1">
+
+<tr>
+    <th>Kode Pendf</th>
+    <th>Nama Pendf</th>
+    <th>Tmp. Lahir</th>
+    <th>JK</th>
+    <th>Tgl Lahir</th>
+    <th>Pek. Ortu</th>
+    <th>Tempat Tes</th>
+    <th>Bln Tes</th>
+    <th>MAT</th>
+    <th>INGGRIS</th>
+    <th>UMUM</th>
+    <th>N. RATA</th>
+    <th>KETERANGAN</th>
+</tr>
+
+<tr>
+    <td colspan="13" height="100"></td>
+</tr>
+
+</table>
+
+<div class="keterangan">
+
+<div class="box">
+
+<h3>Kode pendaftaran :</h3>
+
+2 karakter awal untuk tempat tes dan gelombang:<br><br>
+
+A = Gedung A<br>
+B = Gedung B<br>
+V = Viktor<br><br>
+
+1 karakter akhir bulan tes<br><br>
+
+Contoh: A2-101-9<br><br>
+
+<b>Ket-tes : Gedung A</b>
+
+</div>
+
+<div class="box">
+
+<h3>RATA-RATA = MAT, B. INGGRIS, UMUM</h3>
+
+Jika RATA-RATA MIN 70, maka keterangan <b>Lulus</b><br><br>
+
+Jika 60 - 70, keterangan <b>Cadangan</b><br><br>
+
+&lt; 60, keterangan <b>Tidak Lulus</b>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
